@@ -214,12 +214,12 @@ class CernionAPI {
   }
 
   async listMelos() {
-    try { return await this.get('/edm/melos'); }
+    try { return await this.get('api/edm/melos'); }
     catch (e) { return { rows: DEMO_MELos }; }
   }
 
   async getTimeseries(meloId, obis, from, to) {
-    try { return await this.get('/edm/timeseries/' + meloId + '?obis=' + obis + '&from=' + from + '&to=' + to); }
+    try { return await this.get('api/edm/timeseries/' + meloId + '?obis=' + obis + '&from=' + from + '&to=' + to); }
     catch (e) {
       var values = DEMO_TIMESERIES[meloId] || [];
       var vals = values.map(function(v) { return v.value; });
@@ -239,7 +239,7 @@ class CernionAPI {
 
   async populateSLP(meloId, date, profileId, annualKwh) {
     try {
-      return await this.post('/edm/virtual/populate-slp', {
+      return await this.post('api/edm/virtual/populate-slp', {
         meloId: meloId, date: date, profileId: profileId,
         annualConsumptionKwh: annualKwh, overwriteExisting: true
       });
