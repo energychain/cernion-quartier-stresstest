@@ -250,7 +250,7 @@ class CernionAPI {
 
   async forecastLoad(meloId, date, profileId, annualKwh, temp) {
     try {
-      return await this.post('/forecast/load', {
+      return await this.post('api/forecast/load', {
         meloId: meloId, date: date, profileId: profileId,
         annualConsumptionKwh: annualKwh, temperatureCelsius: temp
       });
