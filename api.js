@@ -215,7 +215,12 @@ class CernionAPI {
   }
 
   async listMelos() {
-    try { return await this.get('api/edm/melos'); }
+    try { var result = await this.get('api/edm/melos');
+      if (!result.data || result.data.length === 0) {
+        console.warn('API returned empty tenant, using demo data');
+        return { data: DEMO_MELos };
+      }
+      return result; }
     catch (e) { return { rows: DEMO_MELos }; }
   }
 
